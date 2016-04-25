@@ -18,8 +18,9 @@ module.exports = function(router, mongoOp) {
 	        var db = new mongoOp();
 	        var response = {};
 
-	        db.userEmail = req.body.email; 
-	        db.userPassword =  require('crypto')
+	        db.email = req.body.email; 
+	        db.username = req.body.username;
+	        db.password =  require('crypto')
 	                          .createHash('sha1')
 	                          .update(req.body.password)
 	                          .digest('base64');
@@ -51,11 +52,14 @@ module.exports = function(router, mongoOp) {
 	            if(err) {
 	                response = {"error" : true,"message" : "Error fetching data"};
 	            } else {
-	                if(req.body.userEmail !== undefined) {
-	                    data.userEmail = req.body.userEmail;
+	                if(req.body.email !== undefined) {
+	                    data.email = req.body.email;
 	                }
-	                if(req.body.userPassword !== undefined) {
-	                    data.userPassword = req.body.userPassword;
+	                if(req.body.username !== undefined) {
+	                    data.username = req.body.username;
+	                }
+	                if(req.body.password !== undefined) {
+	                    data.password = req.body.password;
 	                }
 	                data.save(function(err){
 	                    if(err) {

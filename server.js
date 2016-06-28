@@ -17,10 +17,22 @@ function routes() {
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({"extended" : false}));
 	app.use('/', router);
+    app.use(basicErrorHandling);	
 }
 
 function listen() {
 	var listenPort = process.env.PORT || 3000;
 	app.listen(listenPort);
 	console.log('Listening on port ' + listenPort);
+}
+
+function basicErrorHandling (err, req, res, next) {
+    if (err.stack) {
+        console.error(err.stack);
+        res.status(500).send('Unfortunately an error has occurred.');
+    } else {
+        res.status(400).json({
+            error: err
+        });
+    }
 }

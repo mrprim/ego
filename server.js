@@ -1,15 +1,22 @@
-var express     =   require("express");
-var app         =   express();
-var bodyParser  =   require("body-parser");
-var mongoOp     =   require("./models/mongo");
-var router      =   express.Router();
+var express = require("express"),
+	bodyParser = require("body-parser"),
+	app = express(),
+	users = require('./routes/users'),
+	db = require("./db");
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({"extended" : false}));
 
-require('./models/crudLoader.js')(router,mongoOp);
+routes();
+listen();
 
-app.use('/',router);
 
-app.listen(3000);
-console.log("Listening to PORT 3000");
+function routes() {
+	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({"extended" : false}));
+//	app.use('/users',users);
+}
+
+function listen() {
+	var listenPort = process.env.PORT || 3000;
+	app.listen(listenPort);
+	console.log('Listening on port ' + listenPort);
+}

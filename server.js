@@ -10,6 +10,9 @@ function routes() {
 	router.get('/', function (req, res) {
 	    res.json({test:'test'});
 	});
+	router.get('/test/', function (req, res) {
+	    res.json({test:'test 2'});
+	});
 
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({"extended" : false}));

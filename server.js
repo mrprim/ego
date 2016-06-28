@@ -7,8 +7,13 @@ routes();
 listen();
 
 function routes() {
+	router.get('/', function (req, res) {
+	    res.json({test:'test'});
+	});
+
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({"extended" : false}));
+	app.use('/', router);
 }
 
 function listen() {

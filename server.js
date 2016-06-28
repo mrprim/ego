@@ -1,10 +1,8 @@
 var express = require("express"),
 	bodyParser = require("body-parser"),
 	router = express.Router(),
-	app = express(),
-	users = require('./routes/users'),
-	db = require("./db");
-
+	app = express();
+	
 var route = router.route("/")
     .get(function(req,res){
         var response = {test: 'test'};

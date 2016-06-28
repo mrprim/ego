@@ -7,17 +7,10 @@ var express = require("express"),
 
 var route = router.route("/")
     .get(function(req,res){
-        var response = {};
-        db.users.find({},function(err,data){
-            if(err) {
-                response = {"error" : true,"message" : "Error fetching data"};
-            } else {
-                response = {"error" : false,"message" : data};
-            }
-            res.json(response);
-        });
+        var response = {test: 'test'};
+        res.json(response);
     });
-    
+
 routes();
 listen();
 
